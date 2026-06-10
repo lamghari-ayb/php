@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Électronique — MIAGE Casa</title>
+    <link rel="stylesheet" href="./assest/styles.css">
+</head>
+<body>
+
+<!-- ======== EN-TÊTE ======== -->
+<header>
+    <h1>🗳️ Système de Vote Électronique</h1>
+    <p>Élection du délégué de promotion — MIAGE Casa 2025/2026</p>
+</header>
+
+<!-- ======== NAVIGATION ======== -->
+<nav>
+    <button class="nav-btn active" data-section="section-candidats"
+            onclick="showSection('section-candidats')">
+        👤 Candidats
+    </button>
+    <button class="nav-btn" data-section="section-vote"
+            onclick="showSection('section-vote')">
+        🗳️ Voter
+    </button>
+    <button class="nav-btn" data-section="section-resultats"
+            onclick="showSection('section-resultats')">
+        📊 Résultats
+    </button>
+</nav>
+
+<!-- ======== CONTENU PRINCIPAL ======== -->
+<main>
+
+    <!-- ---- PARTIE 2 : Affichage des candidats ---- -->
+    <section id="section-candidats" class="section active">
+        <h2 class="section-title">Candidats à l'élection</h2>
+        <div id="candidats-grid" class="candidats-grid">
+            <div class="loading">Chargement desS candidats</div>
+        </div>
+    </section>
+
+    <!-- ---- PARTIE 2 : Formulaire de vote ---- -->
+    <section id="section-vote" class="section">
+        <h2 class="section-title">Formulaire de vote</h2>
+        <div class="vote-form-container">
+            <h2>Exprimez votre voix</h2>
+
+            <!-- Saisie de l'identifiant étudiant -->
+            <div class="form-group">
+                <label for="input-etudiant">🪪 Identifiant étudiant</label>
+                <input
+                    type="text"
+                    id="input-etudiant"
+                    placeholder="Ex : ETU-2025-001"
+                    maxlength="20"
+                    autocomplete="off"
+                />
+            </div>
+
+            <!-- Choix du candidat -->
+            <div class="form-group">
+                <label for="select-candidat">👤 Choisir un candidat</label>
+                <select id="select-candidat">
+                    <option value="">-- Choisir un candidat --</option>
+                </select>
+            </div>
+
+            <!-- Soumission -->
+            <button id="btn-soumettre" class="btn-submit" onclick="soumettreVote()">
+                🗳️ Soumettre mon vote
+            </button>
+
+            <!-- Messages utilisateur (succès / déjà voté / erreur) -->
+            <div id="vote-message" class="message"></div>
+        </div>
+    </section>
+
+    <!-- ---- PARTIE 3-4 : Résultats ---- -->
+    <section id="section-resultats" class="section">
+        <div class="resultats-header">
+            <h2 class="section-title" style="margin-bottom:0">Résultats du scrutin</h2>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <span class="total-badge" id="total-votes">— vote(s)</span>
+                <button class="btn-refresh" onclick="loadResultats()">🔄 Actualiser</button>
+            </div>
+        </div>
+
+        <!-- Tableau des résultats -->
+        <table class="resultats-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Candidat</th>
+                    <th>Votes</th>
+                    <th>%</th>
+                    <th>Progression</th>
+                </tr>
+            </thead>
+            <tbody id="resultats-tbody">
+                <tr><td colspan="5" class="loading">Chargement des résultats</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<!-- ======== PIED DE PAGE ======== -->
+<footer>
+    <p>MIAGE Casa — Examen de fin de cursus de formation pratique 2025/2026 &bull; Programmation de sites Web dynamiques</p>
+</footer>
+
+<script src="./assest/app.js"></script>
+</body>
+</html>
